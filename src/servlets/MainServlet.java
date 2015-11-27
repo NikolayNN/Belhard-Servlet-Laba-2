@@ -1,5 +1,7 @@
 package servlets;
 
+import dao.fs.ConnectionToTagFile;
+import dao.fs.ConnectionToThemeFile;
 import utils.Utils;
 
 import javax.servlet.ServletException;
@@ -9,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -18,14 +21,16 @@ import java.util.ArrayList;
  */
 @WebServlet(urlPatterns = "/main", name = "MainServlet")
 public class MainServlet extends HttpServlet {
+
     @Override
     public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
-        ArrayList<String> studiedAdditionThemes = new ArrayList<>();
-        studiedAdditionThemes = Utils.readListFromExternalFile(req.getServletContext().getRealPath(""));
 
+
+        ArrayList<String> studiedAdditionThemes = new ArrayList<>();
+        studiedAdditionThemes = new ConnectionToThemeFile(req.getServletContext().getRealPath("")).readList();
         res.setContentType( "text/html" );
         PrintWriter out = res.getWriter();
-out.println(
+        out.println(
         "<html>"
                 +"<head>"
                     +"<meta charset=\"utf-8\">"
@@ -54,16 +59,16 @@ out.println(
                             +"<div class=\"field\"><textarea name=\"study-work-name\" rows=\"3\" cols=\"40\" id = \"t-project\"> </textarea> <br></div>"
                             +"<hr>"
                             +"<h3>Project evalution: </h3>"
-                            +"<div class=\"field\"><label><input type=\"radio\" name=\"mark\" value=\"otl\" checked >Excelent</label><br></div>"
-                            +"<div class=\"field\"><label><input type=\"radio\" name=\"mark\" value=\"hor\" >Good</label><br></div>"
-                            +"<div class=\"field\"><label> <input type=\"radio\" name=\"mark\" value=\"ud\" >Poor</label><br></div>"
+                            +"<div class=\"field\"><label><input type=\"radio\" name=\"mark\" value=\"Excelent\" checked >Excelent</label><br></div>"
+                            +"<div class=\"field\"><label><input type=\"radio\" name=\"mark\" value=\"Good\" >Good</label><br></div>"
+                            +"<div class=\"field\"><label> <input type=\"radio\" name=\"mark\" value=\"Poor\" >Poor</label><br></div>"
                             +"<hr>"
                             +"<div class=\"field\"><label>Lecturer second name <input type=\"text\" name=\"lec-sname\" id=\"lect-sname\" ></label><br></div>"
                             +"<div class=\"field\"><label>Lecturer first name: <input type=\"text\" name=\"lec-fname\" id=\"lect-fname\"></label><br></div>"
                             +"<div class=\"field\"><label>Lecturer middle name <input type=\"text\" name=\"lec-mname\" id=\"lect-mname\"></label><br></div>"
                             +"<hr>"
                             +"<div class=\"field\"><label><input type=\"checkbox\" name=\"arhive\" value=\"css\" onchange=\"showRadioButtons();\" id=\"arhive\">Do you like pack in arhive? </label><br></div>"
-                            +"<p>File type:</p>"
+                            +"<p>fs type:</p>"
                             +"<div class=\"field\"><label><input type=\"radio\" name=\"type-arhive\" value=\"zip\" disabled id=\"zip\" checked>*.zip</label><br>"
                             +"</div>"
                             +"<div class=\"field\"><label><input type=\"radio\" name=\"type-arhive\" value=\"jar\" disabled id=\"jar\">*.jar</label><br>"

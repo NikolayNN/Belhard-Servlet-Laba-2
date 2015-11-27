@@ -2,6 +2,7 @@ package servlets;
 
 import objects.Field;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -21,7 +22,8 @@ public class FormValidateServlet extends HttpServlet {
     static final String NAME_STUDENT_FIRST_NAME = "fname";
     static final String NAME_STUDENT_MIDDLE_NAME = "mname";
     static final String NAME_START_DATE = "startdate";
-    static final String NAME_FINAL_DATE = "finaldate";
+    static final String NAME_FINAL_DATE = "finishdate";
+    static final String NAME_COURSE_MARK = "mark";
     static final String NAME_TEXT_AREA_PROJECT_NAME = "study-work-name";
     static final String NAME_LECTURE_SECOND_NAME = "lec-sname";
     static final String NAME_LECTURE_FIRST_NAME = "lec-fname";
@@ -123,7 +125,8 @@ public class FormValidateServlet extends HttpServlet {
                 out.println(s);
                 out.print("</p>");
             }
-        }else {out.println("OK!");}
+        }else {RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/createLetter");
+            dispatcher.forward(req, res);}
         out.close();
     }
 }

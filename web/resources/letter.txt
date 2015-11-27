@@ -1,0 +1,8 @@
+Personal Reference
+{STUDENT_LAST_NAME} {STUDENT_FIRST_NAME} {STUDENT_MIDDLE_NAME} did studied at the course «Java Enterprise Edition» from {START_COURSE_DATE} to {END_COURSE_DATE} During the training {STUDENT_FIRST_NAME} showed a big wish to become a good specialist and developer.
+	Prepared for classes responsibility. Do homework every day. Самостоятельно, с использованием дополнительных материалов, освоил темы не входящие в состав предлагаемого курса такие как:
+{ADDITIONAL_TOPIC_NAMES}
+и применил полученные знания, как при выполнении домашних заданий, так и во время разработки итогового проекта. Курсовой проект был выполнен по теме «{COURSE_TASK_NAME}» и сдан с оценкой «{COURSE_TASK_MARK}».
+По стилю работы {STUDENT_FIRST_NAME} склонен к работе в команде, демонстрируя ответственность, внимательность к деталям, а так же способность быстро и чётко выражать свои мысли. 
+	В целом {STUDENT_FIRST_NAME} характеризуется как прилежный слушатель и перспективный сотрудник. Я буду рад, если в будущем мы сможем работать не как «преподаватель-слушатель», но как коллеги.
+	Преподаватель {TUTOR_LAST_NAME} {TUTOR_FIRST_NAME} {TUTOR_MIDDLE_NAME}
